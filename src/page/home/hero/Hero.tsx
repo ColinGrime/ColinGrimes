@@ -11,10 +11,10 @@ type Props = {
 export default function Hero({ stage, setStage }: Props) {
     return (
         <div className="relative flex h-full flex-grow items-center justify-center">
-            <Background stage={stage} />
+            {(stage === AnimationStage.TextExplode || stage === AnimationStage.Completed) && <Background stage={stage} />}
             {stage !== AnimationStage.Completed && <Animation stage={stage} setStage={setStage} />}
             {(stage === AnimationStage.TextExplode || stage === AnimationStage.Completed) && (
-                <div className="m-20 mt-30 mr-auto flex w-125 flex-col gap-5 self-start">
+                <div className="absolute top-30 left-20 flex w-125 flex-col gap-5 self-start">
                     <h1 className="text-3xl font-bold">Hello!</h1>
                     <div>
                         <p>I'm Colin.</p>

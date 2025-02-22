@@ -1,1 +1,1 @@
-declare module "vanta/src/vanta.trunk";
+declare module "vanta/src/vanta.globe";

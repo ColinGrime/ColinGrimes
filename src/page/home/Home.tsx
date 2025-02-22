@@ -8,7 +8,7 @@ export function Home() {
 
     return (
         <div className="flex h-full w-full">
-            {(stage === AnimationStage.TextExplode || stage === AnimationStage.Completed) && <Navigation stage={stage} />}
+            {(stage === AnimationStage.TextExplode || stage === AnimationStage.Completed) && <Navigation />}
             <Hero stage={stage} setStage={setStage} />
         </div>
     );
