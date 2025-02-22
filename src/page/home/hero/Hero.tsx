@@ -1,10 +1,7 @@
-import { motion } from "framer-motion";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { introText, introTextSpeedMs } from "../../../config/settings";
-import { AnimationStage, charVariantMap, charVariants, textVariantMap, textVariants } from "../util/animation";
-import { addNextIntroCharacter, isLastVisibleLine } from "../util/util";
+import { Dispatch, SetStateAction } from "react";
+import { AnimationStage } from "../util/animation";
+import Animation from "./Animation";
 import { Background } from "./Background";
-import Cursor from "./Cursor";
 
 type Props = {
     stage: AnimationStage;
@@ -12,77 +9,28 @@ type Props = {
 };
 
 export default function Hero({ stage, setStage }: Props) {
-    const [text, setText] = useState<string[]>([""]);
-
-    useEffect(() => {
-        // Wait to start the animation.
-        if (stage === AnimationStage.Init) {
-            setTimeout(() => setStage(AnimationStage.Typing), 1000);
-        }
-
-        // Displays the intro text over time.
-        let interval: NodeJS.Timer;
-        if (stage === AnimationStage.Typing) {
-            interval = setInterval(() => setText((prev) => addNextIntroCharacter(prev)), introTextSpeedMs);
-        }
-
-        // Waits before each line.
-        if (stage === AnimationStage.TypingBreak) {
-            setTimeout(() => setStage(AnimationStage.Typing), 600);
-        }
-
-        return () => {
-            if (interval) {
-                clearInterval(interval);
-            }
-        };
-    }, [stage]);
-
-    useEffect(() => {
-        if (text[text.length - 1] === "") {
-            setStage(AnimationStage.TypingBreak);
-        } else if (JSON.stringify(text) === JSON.stringify(introText)) {
-            setTimeout(() => setStage(AnimationStage.TextShrink), 200);
-        }
-    }, [text]);
-
-    // <img src="computer.svg" className="mr-20 h-100 w-100" />
     return (
         <div className="relative flex h-full flex-grow items-center justify-center">
             <Background stage={stage} />
-            <motion.div
-                animate={textVariantMap[stage]}
-                variants={textVariants}
-                onAnimationComplete={(variant) => {
-                    if (variant === "shrink") {
-                        setStage(AnimationStage.TextExplode);
-                    }
-                }}
-                className="flex h-full w-full flex-col items-center justify-center gap-5 text-6xl whitespace-nowrap"
-            >
-                {text
-                    .filter((line, i) => i === 0 || line.length > 0)
-                    .map((line, i) => (
-                        <div key={i} className="inline-flex">
-                            {line.split("").map((char, i) => (
-                                <motion.span
-                                    key={i}
-                                    animate={charVariantMap[stage]}
-                                    variants={charVariants}
-                                    onAnimationComplete={(variant) => {
-                                        if (stage === AnimationStage.TextExplode && variant === "explode") {
-                                            setStage(AnimationStage.Completed);
-                                        }
-                                    }}
-                                    className="inline-block cursor-default"
-                                >
-                                    {char === " " ? "\u00A0" : char}
-                                </motion.span>
-                            ))}
-                            {isLastVisibleLine(text, i) && <Cursor stage={stage} />}
-                        </div>
-                    ))}
-            </motion.div>
+            {stage !== AnimationStage.Completed && <Animation stage={stage} setStage={setStage} />}
+            {(stage === AnimationStage.TextExplode || stage === AnimationStage.Completed) && (
+                <div className="m-20 mt-30 mr-auto flex w-125 flex-col gap-5 self-start">
+                    <h1 className="text-3xl font-bold">Hello!</h1>
+                    <div>
+                        <p>I'm Colin.</p>
+                        <p>I'm a software engineer.</p>
+                    </div>
+                    <p>
+                        Mollit magna enim minim. In ad sunt quis cupidatat irure consectetur ut adipisicing ut proident aliqua commodo dolor laborum nulla. Quis
+                        velit incididunt irure nulla excepteur nulla eiusmod nostrud nostrud. Sunt amet quis consectetur elit mollit ullamco nostrud ea laborum
+                        cillum sit aute in laborum. Qui eiusmod nisi tempor. Anim nulla veniam occaecat dolore aliqua qui anim officia eiusmod officia ullamco.
+                        Irure occaecat dolore dolore sit sunt tempor non ullamco. Reprehenderit eiusmod ut cupidatat fugiat est esse ipsum nulla nisi cillum.
+                        Mollit non aliqua aute et aliqua nulla laboris incididunt incididunt proident commodo deserunt. Occaecat sit aliqua ex id mollit
+                        deserunt. Nostrud ea officia veniam eiusmod duis nostrud mollit consectetur ad. Cupidatat incididunt consequat Lorem. Quis irure anim
+                        sunt. Pariatur tempor in pariatur ipsum.
+                    </p>
+                </div>
+            )}
         </div>
     );
 }
