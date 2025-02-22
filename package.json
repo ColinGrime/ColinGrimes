@@ -1,0 +1,50 @@
+{
+    "name": "colingrimes",
+    "description": "My personal website!",
+    "version": "1.0.0-alpha",
+    "main": "index.js",
+    "type": "module",
+    "license": "MIT",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc -b && vite build",
+        "lint": "eslint .",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@tailwindcss/vite": "^4.0.7",
+        "framer-motion": "^12.4.5",
+        "p5": "^1.11.3",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "react-icons": "^5.5.0",
+        "react-router-dom": "^7.2.0",
+        "tailwindcss": "^4.0.7",
+        "three": "^0.173.0",
+        "vanta": "^0.5.24"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.20.0",
+        "@types/p5": "^1.7.6",
+        "@types/react": "^19.0.10",
+        "@types/react-dom": "^19.0.4",
+        "@types/three": "^0.173.0",
+        "@typescript-eslint/eslint-plugin": "^8.24.1",
+        "@typescript-eslint/parser": "^8.24.1",
+        "@vitejs/plugin-react": "^4.3.4",
+        "esbuild": "^0.25.0",
+        "eslint": "^9.20.1",
+        "eslint-config-prettier": "^10.0.1",
+        "eslint-plugin-import": "^2.31.0",
+        "eslint-plugin-jsx-a11y": "^6.10.2",
+        "eslint-plugin-prettier": "^5.2.3",
+        "eslint-plugin-react": "^7.37.4",
+        "eslint-plugin-react-hooks": "^5.1.0",
+        "eslint-plugin-unicorn": "^57.0.0",
+        "globals": "^15.15.0",
+        "prettier": "^3.5.1",
+        "prettier-plugin-tailwindcss": "^0.6.11",
+        "typescript": "^5.7.3",
+        "vite": "^6.1.1"
+    }
+}
