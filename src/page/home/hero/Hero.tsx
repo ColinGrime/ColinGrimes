@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { introText, introTextSpeedMs } from "../../config/settings";
+import { introText, introTextSpeedMs } from "../../../config/settings";
+import { AnimationStage, charVariantMap, charVariants, textVariantMap, textVariants } from "../util/animation";
+import { addNextIntroCharacter, isLastVisibleLine } from "../util/util";
 import { Background } from "./Background";
 import Cursor from "./Cursor";
-import { AnimationStage, charVariantMap, charVariants, textVariantMap, textVariants } from "./util/animation";
-import { addNextIntroCharacter, isLastVisibleLine } from "./util/util";
 
 type Props = {
     stage: AnimationStage;

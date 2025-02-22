@@ -2,7 +2,7 @@ import p5 from "p5";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import TRUNK from "vanta/src/vanta.trunk";
-import { AnimationStage } from "./util/animation";
+import { AnimationStage } from "../util/animation";
 
 type Props = {
     stage: AnimationStage;

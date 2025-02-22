@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Hero from "./Hero";
+import Hero from "./hero/Hero";
 import Navigation from "./Navigation";
 import { AnimationStage } from "./util/animation";
 

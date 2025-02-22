@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { AnimationStage, cursorVariantMap, cursorVariants } from "./util/animation";
+import { AnimationStage, cursorVariantMap, cursorVariants } from "../util/animation";
 
 type Props = {
     stage: AnimationStage;
