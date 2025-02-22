@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { introTextSpeedMs } from "../../config/settings";
+import { introText, introTextSpeedMs } from "../../config/settings";
 import { Background } from "./Background";
 import Cursor from "./Cursor";
 import { AnimationStage, charVariantMap, charVariants, textVariantMap, textVariants } from "./util/animation";
@@ -23,17 +23,7 @@ export default function Hero({ stage, setStage }: Props) {
         // Displays the intro text over time.
         let interval: NodeJS.Timer;
         if (stage === AnimationStage.Typing) {
-            interval = setInterval(() => {
-                setText((prev) => {
-                    const newText = addNextIntroCharacter(prev);
-                    if (newText[newText.length - 1] === "") {
-                        setStage(AnimationStage.TypingBreak);
-                    } else if (prev === newText) {
-                        setTimeout(() => setStage(AnimationStage.TextShrink), 200);
-                    }
-                    return newText;
-                });
-            }, introTextSpeedMs);
+            interval = setInterval(() => setText((prev) => addNextIntroCharacter(prev)), introTextSpeedMs);
         }
 
         // Waits before each line.
@@ -47,6 +37,14 @@ export default function Hero({ stage, setStage }: Props) {
             }
         };
     }, [stage]);
+
+    useEffect(() => {
+        if (text[text.length - 1] === "") {
+            setStage(AnimationStage.TypingBreak);
+        } else if (JSON.stringify(text) === JSON.stringify(introText)) {
+            setTimeout(() => setStage(AnimationStage.TextShrink), 200);
+        }
+    }, [text]);
 
     // <img src="computer.svg" className="mr-20 h-100 w-100" />
     return (
