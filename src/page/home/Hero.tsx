@@ -1,13 +1,17 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { introTextSpeedMs } from "../../config/settings";
 import { Background } from "./Background";
 import Cursor from "./Cursor";
 import { AnimationStage, charVariantMap, charVariants, textVariantMap, textVariants } from "./util/animation";
 import { addNextIntroCharacter, isLastVisibleLine } from "./util/util";
 
-export default function Hero() {
-    const [stage, setStage] = useState<AnimationStage>(AnimationStage.Init);
+type Props = {
+    stage: AnimationStage;
+    setStage: Dispatch<SetStateAction<AnimationStage>>;
+};
+
+export default function Hero({ stage, setStage }: Props) {
     const [text, setText] = useState<string[]>([""]);
 
     useEffect(() => {
@@ -46,7 +50,7 @@ export default function Hero() {
 
     // <img src="computer.svg" className="mr-20 h-100 w-100" />
     return (
-        <div className="flex h-full w-full items-center justify-center">
+        <div className="relative flex h-full flex-grow items-center justify-center">
             <Background stage={stage} />
             <motion.div
                 animate={textVariantMap[stage]}

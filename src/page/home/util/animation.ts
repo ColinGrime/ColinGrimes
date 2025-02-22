@@ -39,6 +39,15 @@ export const charVariantMap: Record<AnimationStage, VariantLabels> = {
     [AnimationStage.Completed]: "invisible",
 };
 
+export const navigationVariantMap: Record<AnimationStage, VariantLabels> = {
+    [AnimationStage.Init]: "init",
+    [AnimationStage.Typing]: "init",
+    [AnimationStage.TypingBreak]: "init",
+    [AnimationStage.TextShrink]: "init",
+    [AnimationStage.TextExplode]: "expand",
+    [AnimationStage.Completed]: "expanded",
+};
+
 export const cursorVariants: Variants = {
     still: {
         opacity: 1,
@@ -84,5 +93,18 @@ export const charVariants: Variants = {
     }),
     invisible: {
         opacity: 0,
+    },
+};
+
+export const navigationVariants: Variants = {
+    init: {
+        scaleX: 0,
+    },
+    expand: {
+        scaleX: 1,
+        transition: { duration: 0.1, ease: "easeOut" },
+    },
+    expanded: {
+        scaleX: 1,
     },
 };

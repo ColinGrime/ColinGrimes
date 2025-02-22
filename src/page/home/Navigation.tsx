@@ -1,9 +1,20 @@
+import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AnimationStage, navigationVariantMap, navigationVariants } from "./util/animation";
 
-export default function Navbar() {
+type Props = {
+    stage: AnimationStage;
+};
+
+export default function Navigation({ stage }: Props) {
     return (
-        <nav className="absolute left-0 flex h-full w-75 flex-col gap-5 bg-blue-100 p-10 text-black">
+        <motion.nav
+            initial={"init"}
+            animate={navigationVariantMap[stage]}
+            variants={navigationVariants}
+            className="flex h-full w-75 origin-left flex-col gap-5 bg-blue-100 p-10 text-black"
+        >
             <div className="overflow-hidden rounded-xl shadow-md drop-shadow-2xl">
                 <img src="colin.jpg" className="-mt-11 -mb-1" />
             </div>
@@ -24,6 +35,6 @@ export default function Navbar() {
                 <FaLinkedin />
                 <FaGithub />
             </div>
-        </nav>
+        </motion.nav>
     );
 }

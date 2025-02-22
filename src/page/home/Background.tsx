@@ -1,6 +1,5 @@
 import p5 from "p5";
 import { useEffect, useRef } from "react";
-// import colors from "tailwindcss/colors";
 import * as THREE from "three";
 import TRUNK from "vanta/src/vanta.trunk";
 import { AnimationStage } from "./util/animation";
@@ -36,6 +35,7 @@ export function Background({ stage }: Props) {
                 chaos: 5,
             });
         }
+        vantaEffectRef.current.resize();
     }, [stage]);
 
     return <div ref={vantaRef} className="absolute -z-10 h-full w-full scale-90 opacity-30" />;
