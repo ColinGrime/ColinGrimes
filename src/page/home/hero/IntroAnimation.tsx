@@ -13,7 +13,7 @@ type CursorProps = {
     stage: AnimationStage;
 };
 
-export default function Animation({ stage, setStage }: AnimationProps) {
+export default function IntroAnimation({ stage, setStage }: AnimationProps) {
     const [text, setText] = useState<string[]>([""]);
 
     useEffect(() => {
@@ -57,7 +57,7 @@ export default function Animation({ stage, setStage }: AnimationProps) {
                     setStage(AnimationStage.TextExplode);
                 }
             }}
-            className="flex h-full w-full flex-col items-center justify-center gap-5 text-6xl whitespace-nowrap"
+            className="absolute flex h-full w-full flex-col items-center justify-center gap-5 text-6xl whitespace-nowrap"
         >
             {text
                 .filter((line, i) => i === 0 || line.length > 0)

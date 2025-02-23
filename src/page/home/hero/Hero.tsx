@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { AnimationStage, isPageReady } from "../util/animation";
 import { Background } from "./Background";
-import Animation from "./IntroAnimation";
+import IntroAnimation from "./IntroAnimation";
 
 type Props = {
     stage: AnimationStage;
@@ -11,12 +11,12 @@ type Props = {
 export default function Hero({ stage, setStage }: Props) {
     return (
         <div className="relative flex h-full flex-grow items-center justify-center">
-            {stage !== AnimationStage.Completed && <Animation stage={stage} setStage={setStage} />}
-            {isPageReady(stage) && (
-                <>
-                    <div className="hidden h-full w-full xl:block">
-                        <Background />
-                    </div>
+            {stage !== AnimationStage.Completed && <IntroAnimation stage={stage} setStage={setStage} />}
+            <div className="h-full w-full">
+                <div className={`absolute h-full w-full transition-opacity duration-2000 xl:block ${!isPageReady(stage) && "opacity-0"}`}>
+                    <Background stage={stage} />
+                </div>
+                {isPageReady(stage) && (
                     <div className="absolute top-30 left-20 flex w-125 flex-col gap-5 self-start">
                         <h1 className="text-3xl font-bold">Hello!</h1>
                         <div>
@@ -33,8 +33,8 @@ export default function Hero({ stage, setStage }: Props) {
                             Lorem. Quis irure anim sunt. Pariatur tempor in pariatur ipsum.
                         </p>
                     </div>
-                </>
-            )}
+                )}
+            </div>
         </div>
     );
 }
