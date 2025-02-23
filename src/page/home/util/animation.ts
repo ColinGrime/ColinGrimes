@@ -12,6 +12,16 @@ export enum AnimationStage {
     Completed,
 }
 
+/**
+ * Checks if the page is ready for content.
+ * Content is ready once the intro text has exploded or is done exploding.
+ * @param stage the current stage
+ * @returns true if the page is ready for content display
+ */
+export function isPageReady(stage: AnimationStage): boolean {
+    return stage === AnimationStage.TextExplode || stage === AnimationStage.Completed;
+}
+
 export const cursorVariantMap: Record<AnimationStage, VariantLabels> = {
     [AnimationStage.Init]: "blinking",
     [AnimationStage.Typing]: "still",
