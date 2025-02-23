@@ -1,16 +1,19 @@
 import { motion } from "framer-motion";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { introText, introTextSpeedMs } from "../../../config/settings";
-import { AnimationStage, charVariantMap, charVariants, textVariantMap, textVariants } from "../util/animation";
+import { AnimationStage, charVariantMap, charVariants, cursorVariantMap, cursorVariants, textVariantMap, textVariants } from "../util/animation";
 import { addNextIntroCharacter, isLastVisibleLine } from "../util/util";
-import Cursor from "./Cursor";
 
-type Props = {
+type AnimationProps = {
     stage: AnimationStage;
     setStage: Dispatch<SetStateAction<AnimationStage>>;
 };
 
-export default function Animation({ stage, setStage }: Props) {
+type CursorProps = {
+    stage: AnimationStage;
+};
+
+export default function Animation({ stage, setStage }: AnimationProps) {
     const [text, setText] = useState<string[]>([""]);
 
     useEffect(() => {
@@ -80,4 +83,8 @@ export default function Animation({ stage, setStage }: Props) {
                 ))}
         </motion.div>
     );
+}
+
+function Cursor({ stage }: CursorProps) {
+    return <motion.div animate={cursorVariantMap[stage]} variants={cursorVariants} className="ml-1 h-[1em] w-[0.08em] bg-blue-400" />;
 }
