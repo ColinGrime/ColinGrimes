@@ -10,9 +10,7 @@ export default function Navigation() {
             </div>
 
             <div className="flex flex-col items-center self-center whitespace-nowrap">
-                <Link to="/" className="text-[38px] font-bold">
-                    Colin Grimes
-                </Link>
+                <div className="text-[38px] font-bold">Colin Grimes</div>
                 <div className="flex text-lg">
                     <div>Software&nbsp;</div>
                     <div className="min-w-22">
@@ -30,8 +28,12 @@ export default function Navigation() {
             </div>
 
             <div className="mt-auto flex justify-center gap-15 text-4xl">
-                <FaLinkedin />
-                <FaGithub />
+                <Link to="https://www.linkedin.com/in/colingrimes/" target="_blank">
+                    <FaLinkedin />
+                </Link>
+                <Link to="https://github.com/ColinGrime/" target="_blank">
+                    <FaGithub />
+                </Link>
             </div>
         </nav>
     );
