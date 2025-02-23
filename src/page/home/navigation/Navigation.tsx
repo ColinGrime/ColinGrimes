@@ -1,5 +1,6 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { WordCycleAnimation } from "./WordCycleAnimation";
 
 export default function Navigation() {
     return (
@@ -8,11 +9,19 @@ export default function Navigation() {
                 <img src="colin.jpg" className="-mt-11 -mb-1 brightness-90" />
             </div>
 
-            <Link to="/" className="self-center text-[38px] font-bold whitespace-nowrap">
-                Colin Grimes
-            </Link>
+            <div className="flex flex-col items-center self-center whitespace-nowrap">
+                <Link to="/" className="text-[38px] font-bold">
+                    Colin Grimes
+                </Link>
+                <div className="flex text-lg">
+                    <div>Software&nbsp;</div>
+                    <div className="min-w-22">
+                        <WordCycleAnimation />
+                    </div>
+                </div>
+            </div>
 
-            <div className="flex flex-col font-semibold">
+            <div className="mt-5 flex flex-col font-semibold">
                 {["home", "projects", "contact"].map((item) => (
                     <Link key={item} to={`/${item}`} className="transition hover:text-red-400">
                         /{item}
