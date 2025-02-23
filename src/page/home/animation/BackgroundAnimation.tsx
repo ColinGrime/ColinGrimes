@@ -7,7 +7,7 @@ type Props = {
     stage: AnimationStage;
 };
 
-export function Background({ stage }: Props) {
+export function BackgroundAnimation({ stage }: Props) {
     const vantaRef = useRef<HTMLDivElement>(null);
     const vantaEffectRef = useRef<any>(null);
 
