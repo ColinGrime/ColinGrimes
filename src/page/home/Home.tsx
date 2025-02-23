@@ -8,7 +8,7 @@ export function Home() {
     const [stage, setStage] = useState<AnimationStage>(AnimationStage.Init);
 
     return (
-        <div className="flex h-full w-full">
+        <div className="relative flex h-full w-screen overflow-x-hidden">
             {stage !== AnimationStage.Completed && <IntroAnimation stage={stage} setStage={setStage} />}
             <div className={`absolute left-28 hidden h-full w-full transition-opacity duration-2000 xl:block ${!isPageReady(stage) && "opacity-0"}`}>
                 <BackgroundAnimation stage={stage} />
