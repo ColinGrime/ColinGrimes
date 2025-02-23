@@ -1,10 +1,9 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { WordCycleAnimation } from "./animation/WordCycleAnimation";
 
 export default function Navigation() {
     return (
-        <nav className="flex h-full w-75 origin-left flex-col gap-5 bg-slate-950 p-10 text-white">
+        <nav className="fixed flex h-full w-75 origin-left flex-col gap-5 bg-slate-950 p-10 text-white">
             <div className="overflow-hidden rounded-xl shadow-md drop-shadow-2xl">
                 <img src="colin.jpg" className="-mt-11 -mb-1 brightness-90" />
             </div>
@@ -20,12 +19,12 @@ export default function Navigation() {
             </div>
 
             <div className="mt-auto flex justify-center gap-15 text-4xl">
-                <Link to="https://www.linkedin.com/in/colingrimes/" target="_blank">
+                <a href="https://www.linkedin.com/in/colingrimes" target="_blank">
                     <FaLinkedin />
-                </Link>
-                <Link to="https://github.com/ColinGrime/" target="_blank">
+                </a>
+                <a href="https://github.com/ColinGrime" target="_blank">
                     <FaGithub />
-                </Link>
+                </a>
             </div>
         </nav>
     );
