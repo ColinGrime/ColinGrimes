@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { AnimationStage, isPageReady } from "../util/animation";
-import Animation from "./Animation";
 import { Background } from "./Background";
+import Animation from "./IntroAnimation";
 
 type Props = {
     stage: AnimationStage;
