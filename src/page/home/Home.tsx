@@ -10,7 +10,9 @@ export function Home() {
     return (
         <div className="relative flex h-full w-screen overflow-x-hidden">
             {stage !== AnimationStage.Completed && <IntroAnimation stage={stage} setStage={setStage} />}
-            <div className={`absolute left-28 hidden h-full w-full transition-opacity duration-2000 xl:block ${!isPageReady(stage) && "opacity-0"}`}>
+            <div
+                className={`pointer-events-none fixed left-28 hidden h-full w-full transition-opacity duration-2000 xl:block ${!isPageReady(stage) && "opacity-0"}`}
+            >
                 <BackgroundAnimation stage={stage} />
             </div>
             {isPageReady(stage) && (
@@ -25,7 +27,7 @@ export function Home() {
                                 I'm a software developer.
                             </p>
                             <p>I have experience with a number of languages and libraries:</p>
-                            <div className="grid h-50 w-110 grid-cols-6 grid-rows-3 gap-x-5">
+                            <div className="grid h-50 w-110 grid-cols-6 grid-rows-3 gap-x-4">
                                 <img src="programming/java.svg" />
                                 <img src="programming/python.svg" />
                                 <img src="programming/typescript.svg" />
@@ -50,38 +52,46 @@ export function Home() {
                                 expand my skill set.
                             </p>
                         </section>
-                        <section className="flex flex-col gap-5">
+                        <section className="flex flex-col gap-5 pb-10">
                             <h2 className="text-2xl font-bold">Projects</h2>
-                            <ul className="list-disc pl-5">
+                            <ul className="flex list-disc flex-col gap-2 pl-5">
                                 <li>
                                     <a href="https://github.com/ColinGrime/Midnight" target="_blank" className="font-semibold">
                                         Midnight
                                     </a>
-                                    : Bukkit plugin development library, designed for ease of use and streamlined plugin creation.
+                                    : Powerful and extensible Bukkit plugin development library, designed for ease of use and streamlined plugin creation.
                                 </li>
                                 <li>
                                     <a href="https://github.com/ColinGrime/SkyMines" target="_blank" className="font-semibold">
                                         SkyMines
                                     </a>
-                                    : Java Minecraft plugin that utilizes numerous OOP concepts, design principles, and database integrations.
+                                    : Java Minecraft plugin enabling personalized and customizable mines for individual players, complete with upgrade paths,
+                                    adjustable settings, and multiple storage options.
                                 </li>
                                 <li>
                                     <a href="https://github.com/ColinGrime/Chess" target="_blank" className="font-semibold">
                                         Chess
                                     </a>
-                                    : Java Swing application that accounts for most rulings and displays all possible moves on the grid.
+                                    : Classic chess game recreated in Java Swing, complete with essential rules and intuitive move guidance for players.
                                 </li>
                                 <li>
                                     <a href="https://github.com/ColinGrime/Pixeldex" target="_blank" className="font-semibold">
                                         Pixeldex
                                     </a>
-                                    : Electron.js desktop application that lists all Pokémon statistics in a user-friendly manner.
+                                    : Electron.js desktop application that lists all (currently 905) Pixelmon statistics and spawn information.
                                 </li>
                                 <li>
                                     <a href="https://github.com/ColinGrime/ApexTournaments" target="_blank" className="font-semibold">
                                         ApexTournaments
                                     </a>
                                     : Discord.js bot that tracks your in-game statistics and allows you to host tournaments.
+                                </li>
+                                <li>
+                                    <a href="https://github.com/ColinGrime/SiriusEnchants" target="_blank" className="font-semibold">
+                                        SiriusEnchants
+                                    </a>
+                                    : Java Minecraft plugin with 30+ custom enchantments, a purchase/preview menu, admin free-buy, unenchanting, and stacked
+                                    enchant levels.
                                 </li>
                             </ul>
                         </section>
