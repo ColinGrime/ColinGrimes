@@ -10,17 +10,24 @@ export function Home() {
     return (
         <div className="relative flex h-full w-screen overflow-x-hidden">
             {stage !== AnimationStage.Completed && <IntroAnimation stage={stage} setStage={setStage} />}
-            <div
-                className={`pointer-events-none fixed left-28 hidden h-full w-full transition-opacity duration-2000 xl:block ${!isPageReady(stage) && "opacity-0"}`}
-            >
-                <BackgroundAnimation stage={stage} />
-            </div>
+            {stage !== AnimationStage.Init && (
+                <div
+                    className={`pointer-events-none fixed left-28 hidden h-full w-full transition-opacity duration-2000 xl:block ${!isPageReady(stage) && "opacity-0"}`}
+                >
+                    <BackgroundAnimation stage={stage} />
+                </div>
+            )}
             {isPageReady(stage) && (
                 <div>
                     <Navigation />
                     <div className="relative top-15 left-90 flex w-125 flex-col gap-10 self-start">
                         <section className="flex flex-col gap-5">
-                            <h1 className="text-3xl font-bold">Hello!</h1>
+                            <button
+                                onClick={() => setStage(AnimationStage.Init)}
+                                className="self-start text-3xl font-bold hover:cursor-pointer hover:underline"
+                            >
+                                Hello!
+                            </button>
                             <p>
                                 I'm Colin, a software developer.
                                 <br />I have experience with a number of languages and libraries:
@@ -43,7 +50,7 @@ export function Home() {
                                 <img src="programming/sql.svg" />
                                 <img src="programming/postgresql.svg" />
                                 <img src="programming/docker.svg" />
-                                <img src="programming/git.svg" />
+                                <img src="programming/tic-tac-toe.svg" />
                             </div>
                             <p>
                                 I'm passionate about clean code, scalable architecture, and efficient design patterns, and I enjoy exploring new technologies to
@@ -54,42 +61,49 @@ export function Home() {
                             <h2 className="text-2xl font-bold">Projects</h2>
                             <ul className="link flex list-disc flex-col gap-2 pl-5">
                                 <li>
-                                    <a href="https://github.com/ColinGrime/Midnight" target="_blank" className="font-semibold">
+                                    <a href="https://github.com/ColinGrime/Midnight" target="_blank">
                                         Midnight
                                     </a>
                                     : Powerful and extensible Bukkit plugin development library, designed for ease of use and streamlined plugin creation.
                                 </li>
                                 <li>
-                                    <a href="https://github.com/ColinGrime/SkyMines" target="_blank" className="font-semibold">
+                                    <a href="https://github.com/ColinGrime/SkyMines" target="_blank">
                                         SkyMines
                                     </a>
                                     : Java Minecraft plugin enabling personalized and customizable mines for individual players, complete with upgrade paths,
                                     adjustable settings, and multiple storage options.
                                 </li>
                                 <li>
-                                    <a href="https://github.com/ColinGrime/Chess" target="_blank" className="font-semibold">
+                                    <a href="https://github.com/ColinGrime/Chess" target="_blank">
                                         Chess
                                     </a>
                                     : Classic chess game recreated in Java Swing, complete with essential rules and intuitive move guidance for players.
                                 </li>
                                 <li>
-                                    <a href="https://github.com/ColinGrime/Pixeldex" target="_blank" className="font-semibold">
+                                    <a href="https://github.com/ColinGrime/Pixeldex" target="_blank">
                                         Pixeldex
                                     </a>
                                     : Electron.js desktop application that lists all (currently 905) Pixelmon statistics and spawn information.
                                 </li>
                                 <li>
-                                    <a href="https://github.com/ColinGrime/ApexTournaments" target="_blank" className="font-semibold">
+                                    <a href="https://github.com/ColinGrime/ApexTournaments" target="_blank">
                                         ApexTournaments
                                     </a>
                                     : Discord.js bot that tracks your in-game statistics and allows you to host tournaments.
                                 </li>
                                 <li>
-                                    <a href="https://github.com/ColinGrime/SiriusEnchants" target="_blank" className="font-semibold">
+                                    <a href="https://github.com/ColinGrime/SiriusEnchants" target="_blank">
                                         SiriusEnchants
                                     </a>
                                     : Java Minecraft plugin with 30+ custom enchantments, a purchase/preview menu, admin free-buy, unenchanting, and stacked
                                     enchant levels.
+                                </li>
+                                <li>
+                                    ...and many more! Check out my Github{" "}
+                                    <a href="https://github.com/ColinGrime" target="_blank">
+                                        @ColinGrime
+                                    </a>
+                                    .
                                 </li>
                             </ul>
                         </section>
