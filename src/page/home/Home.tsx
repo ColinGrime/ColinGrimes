@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Resource, resources } from "../../config/settings";
 import { BackgroundAnimation } from "./animation/BackgroundAnimation";
 import IntroAnimation from "./animation/IntroAnimation";
 import Navigation from "./Navigation";
@@ -6,6 +7,8 @@ import { AnimationStage, isPageReady } from "./util/animation";
 
 export function Home() {
     const [stage, setStage] = useState<AnimationStage>(AnimationStage.Init);
+    const [resource, setResource] = useState<Resource | undefined>();
+    const [defaultResource, setDefaultResource] = useState<Resource | undefined>();
 
     return (
         <div className="relative flex h-full w-screen overflow-x-hidden">
@@ -19,7 +22,7 @@ export function Home() {
             )}
             {isPageReady(stage) && (
                 <div>
-                    <Navigation />
+                    <Navigation resource={resource || defaultResource} />
                     <div className="relative top-15 left-90 flex w-125 flex-col gap-10 self-start">
                         <section className="flex flex-col gap-5">
                             <button
@@ -33,24 +36,17 @@ export function Home() {
                                 <br />I have experience with a number of languages and libraries:
                             </p>
                             <div className="grid h-50 w-110 grid-cols-6 grid-rows-3 gap-x-4">
-                                <img src="programming/java.svg" />
-                                <img src="programming/python.svg" />
-                                <img src="programming/typescript.svg" />
-                                <img src="programming/javascript.svg" />
-                                <img src="programming/selenium.svg" />
-                                <img src="programming/node.svg" />
-                                <img src="programming/react.svg" />
-                                <img src="programming/tailwindcss.svg" />
-                                <img src="programming/material-ui.svg" />
-                                <img src="programming/jest.svg" />
-                                <img src="programming/openlayers.svg" />
-                                <img src="programming/electron.svg" />
-                                <img src="programming/gradle.svg" />
-                                <img src="programming/maven.svg" />
-                                <img src="programming/sql.svg" />
-                                <img src="programming/postgresql.svg" />
-                                <img src="programming/docker.svg" />
-                                <img src="programming/tic-tac-toe.svg" />
+                                {resources.map((resource) => (
+                                    <button
+                                        key={resource.name}
+                                        onClick={() => setDefaultResource(resource)}
+                                        onMouseEnter={() => setResource(resource)}
+                                        onMouseLeave={() => setResource(undefined)}
+                                        className="hover:cursor-pointer"
+                                    >
+                                        <img src={resource.path} />
+                                    </button>
+                                ))}
                             </div>
                             <p>
                                 I'm passionate about clean code, scalable architecture, and efficient design patterns, and I enjoy exploring new technologies to
