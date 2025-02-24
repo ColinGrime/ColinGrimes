@@ -3,7 +3,7 @@ import { Home } from "./page/home/Home";
 
 export default function App() {
     return (
-        <div className="h-screen w-screen font-[Quicksand]">
+        <div className="h-screen w-screen">
             <Home />
         </div>
     );

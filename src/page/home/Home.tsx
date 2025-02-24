@@ -20,13 +20,11 @@ export function Home() {
                     <Navigation />
                     <div className="relative top-15 left-90 flex w-125 flex-col gap-10 self-start">
                         <section className="flex flex-col gap-5">
-                            <h1 className="text-3xl font-bold">Welcome!</h1>
+                            <h1 className="text-3xl font-bold">Hello!</h1>
                             <p>
-                                I'm Colin.
-                                <br />
-                                I'm a software developer.
+                                I'm Colin, a software developer.
+                                <br />I have experience with a number of languages and libraries:
                             </p>
-                            <p>I have experience with a number of languages and libraries:</p>
                             <div className="grid h-50 w-110 grid-cols-6 grid-rows-3 gap-x-4">
                                 <img src="programming/java.svg" />
                                 <img src="programming/python.svg" />
@@ -54,7 +52,7 @@ export function Home() {
                         </section>
                         <section className="flex flex-col gap-5 pb-10">
                             <h2 className="text-2xl font-bold">Projects</h2>
-                            <ul className="flex list-disc flex-col gap-2 pl-5">
+                            <ul className="link flex list-disc flex-col gap-2 pl-5">
                                 <li>
                                     <a href="https://github.com/ColinGrime/Midnight" target="_blank" className="font-semibold">
                                         Midnight
