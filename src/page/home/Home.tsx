@@ -57,8 +57,8 @@ export function Home() {
                                 expand my skill set.
                             </p>
                         </section>
-                        <section className="flex flex-col gap-5 pb-10">
-                            <h2 className="text-2xl font-bold">Projects</h2>
+                        <section className="flex flex-col gap-5">
+                            <h2 className="text-2xl font-bold">Personal Projects</h2>
                             <ul className="link flex list-disc flex-col gap-2 pl-5">
                                 <li>
                                     <a href="https://github.com/ColinGrime/Midnight" target="_blank">
@@ -104,6 +104,33 @@ export function Home() {
                                         @ColinGrime
                                     </a>
                                     .
+                                </li>
+                            </ul>
+                        </section>
+                        <section className="flex flex-col gap-5 pb-10">
+                            <h2 className="text-2xl font-bold">Work Experience</h2>
+                            <ul className="link flex list-disc flex-col gap-2 pl-5">
+                                <li>
+                                    <b>CounterUAS</b>: Developed a Python microservice for real-time airspace threat detection, integrating surveillance data
+                                    processing, predictive tracking, and an alerting system with an OpenLayers-based frontend.
+                                </li>
+                                <li>
+                                    <b>Chat System</b>: Designed and implemented a comprehensive chat system featuring real-time communication via WebSockets,
+                                    direct messaging, group chat functionality, and instant notifications using React and PostgreSQL.
+                                </li>
+                                <li>
+                                    <b>Selenium Suite</b>: Built the foundation of a Selenium automation suite, implementing 15+ automated tests, fully
+                                    automating critical testing scenarios, and integrating a robust logging system that captures timestamps, test logs, Chrome
+                                    logs, code errors, and relevant screenshots.
+                                </li>
+                                <li>
+                                    <b>PostgreSQL Testing</b>: Developed a custom PostgreSQL testing tool in Node.js to streamline database validation by
+                                    automating the testing of insert, get, and update functions, ensuring accurate and reliable database operations.
+                                </li>
+                                <li>
+                                    <b>Frontend Development</b>: Built and optimized React.js components using Material UI with a focus on usability and
+                                    functionality, while proactively identifying and fixing critical bugs, improving code quality, and ensuring thorough unit
+                                    test coverage for maintainability.
                                 </li>
                             </ul>
                         </section>
