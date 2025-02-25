@@ -1,6 +1,7 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Resource } from "../../config/settings";
 import { WordCycleAnimation } from "./animation/WordCycleAnimation";
+import { TicTacToe } from "./game/TicTacToe";
 
 type Props = {
     resource?: Resource;
@@ -28,13 +29,20 @@ export default function Navigation({ resource }: Props) {
                     <svg viewBox="0 -3 200 17">
                         <polyline points="0,12 100,0 200,12" className="fill-none stroke-cyan-950 stroke-3" />
                     </svg>
-                    <section className="mx-8 mb-3 flex flex-col gap-3">
-                        <div className="mx-auto flex text-xl">
-                            <div className="font-bold">{resource.name}&nbsp;</div>
-                            <div>({new Date().getFullYear() - resource.year}+ years)</div>
+                    {resource.year && resource.description && (
+                        <section className="mx-8 mb-3 flex flex-col gap-3">
+                            <div className="mx-auto flex text-xl">
+                                <div className="font-bold">{resource.name}&nbsp;</div>
+                                <div>({new Date().getFullYear() - resource.year}+ years)</div>
+                            </div>
+                            <p>{resource.description}</p>
+                        </section>
+                    )}
+                    {resource.name === "Tic Tac Toe" && (
+                        <div className="mx-auto h-55 w-55">
+                            <TicTacToe />
                         </div>
-                        <p>{resource.description}</p>
-                    </section>
+                    )}
                     <svg viewBox="0 -3 200 17">
                         <polyline points="0,0 100,12 200,0" className="fill-none stroke-cyan-950 stroke-3" />
                     </svg>

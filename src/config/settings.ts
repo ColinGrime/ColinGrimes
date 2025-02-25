@@ -5,8 +5,8 @@ export const wordCycleText = ["Engineer", "Developer", "Designer", "Enthusiast"]
 export interface Resource {
     path: string;
     name: string;
-    year: number;
-    description: string;
+    year?: number;
+    description?: string;
 }
 
 // List of programming languages and libraries.
@@ -130,7 +130,5 @@ export const resources: Resource[] = [
     {
         path: "programming/tic-tac-toe.svg",
         name: "Tic Tac Toe",
-        year: 2025,
-        description: ":)",
     },
 ];
