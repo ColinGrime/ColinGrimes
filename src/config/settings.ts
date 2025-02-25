@@ -134,24 +134,3 @@ export const resources: Resource[] = [
         description: ":)",
     },
 ];
-
-{
-    /* <img src="programming/java.svg" />
-    <img src="programming/python.svg" />
-    <img src="programming/typescript.svg" />
-    <img src="programming/javascript.svg" />
-    <img src="programming/selenium.svg" />
-    <img src="programming/node.svg" />
-    <img src="programming/react.svg" />
-    <img src="programming/tailwindcss.svg" />
-    <img src="programming/material-ui.svg" />
-    <img src="programming/jest.svg" />
-    <img src="programming/openlayers.svg" />
-    <img src="programming/electron.svg" />
-    <img src="programming/gradle.svg" />
-    <img src="programming/maven.svg" />
-    <img src="programming/sql.svg" />
-    <img src="programming/postgresql.svg" />
-    <img src="programming/docker.svg" />
-    <img src="programming/tic-tac-toe.svg" /> */
-}
