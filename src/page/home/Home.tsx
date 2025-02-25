@@ -42,7 +42,7 @@ export function Home() {
                                         onClick={() => setDefaultResource(resource)}
                                         onMouseEnter={() => setResource(resource)}
                                         onMouseLeave={() => setResource(undefined)}
-                                        className="hover:cursor-pointer"
+                                        className="-m-2 p-2 hover:cursor-pointer"
                                     >
                                         <img src={resource.path} />
                                     </button>
