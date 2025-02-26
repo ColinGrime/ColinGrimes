@@ -33,6 +33,12 @@ export function TicTacToe() {
         return () => clearTimeout(timeout);
     }, [player]);
 
+    useEffect(() => {
+        if (winner) {
+            setPlayer(PlayerType.None);
+        }
+    }, [winner]);
+
     /**
      * Checks if the specified cell is taken.
      *
@@ -106,6 +112,19 @@ export function TicTacToe() {
         }
     };
 
+    /**
+     * Resets the entire tic-tac-toe game.
+     */
+    const resetGame = () => {
+        setBoard(
+            Array(3)
+                .fill(0)
+                .map(() => Array(3).fill(PlayerType.None))
+        );
+        setWinner(undefined);
+        setPlayer(PlayerType.Computer);
+    };
+
     return (
         <div className="relative grid h-full w-full grid-cols-3 grid-rows-3">
             {/* Horizontal Lines */}
@@ -126,6 +145,17 @@ export function TicTacToe() {
                         {cell}
                     </button>
                 ))
+            )}
+
+            {winner && (
+                <div className="absolute inset-0 m-auto flex h-22 w-33 flex-col items-center justify-center gap-1 rounded-2xl bg-cyan-900">
+                    <div className={`text-2xl font-bold ${winner === PlayerType.Real ? "text-green-500" : "text-red-500"}`}>
+                        You {winner === PlayerType.Real ? "won" : "lost"}!
+                    </div>
+                    <button onClick={() => resetGame()} className="text-lg font-semibold hover:cursor-pointer">
+                        Play Again
+                    </button>
+                </div>
             )}
         </div>
     );
