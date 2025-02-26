@@ -38,11 +38,9 @@ export default function Navigation({ resource }: Props) {
                             <p>{resource.description}</p>
                         </section>
                     )}
-                    {resource.name === "Tic Tac Toe" && (
-                        <div className="mx-auto h-55 w-55">
-                            <TicTacToe />
-                        </div>
-                    )}
+                    <div className={`mx-auto h-55 w-55 ${resource.name === "Tic Tac Toe" ? "block" : "hidden"}`}>
+                        <TicTacToe />
+                    </div>
                     <svg viewBox="0 -3 200 17">
                         <polyline points="0,0 100,12 200,0" className="fill-none stroke-cyan-950 stroke-3" />
                     </svg>

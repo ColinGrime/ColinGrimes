@@ -12,7 +12,7 @@ export function TicTacToe() {
             .fill(0)
             .map(() => Array(3).fill(PlayerType.None))
     );
-    const [player, setPlayer] = useState<PlayerType>(Math.random() > 0.5 ? PlayerType.Real : PlayerType.Computer);
+    const [player, setPlayer] = useState<PlayerType>(PlayerType.Computer);
     const [winner, setWinner] = useState<PlayerType>();
 
     useEffect(() => {
