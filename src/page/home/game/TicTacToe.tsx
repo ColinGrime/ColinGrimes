@@ -16,7 +16,7 @@ export function TicTacToe() {
     const [winner, setWinner] = useState<PlayerType>();
 
     useEffect(() => {
-        if (player !== PlayerType.Computer || winner) {
+        if (!canMove(PlayerType.Computer)) {
             return;
         }
 
@@ -24,7 +24,7 @@ export function TicTacToe() {
             while (true) {
                 const r = Math.floor(Math.random() * 3);
                 const c = Math.floor(Math.random() * 3);
-                if (attemptMove(r, c, PlayerType.Computer)) {
+                if (attemptMove(PlayerType.Computer, r, c)) {
                     break;
                 }
             }
@@ -33,12 +33,46 @@ export function TicTacToe() {
         return () => clearTimeout(timeout);
     }, [player]);
 
+    /**
+     * Checks if the specified cell is taken.
+     *
+     * @param r the row
+     * @param c the column
+     * @returns true if the cell is taken
+     */
     const isCellTaken = (r: number, c: number) => {
         return board[r][c] !== PlayerType.None;
     };
 
-    const attemptMove = (r: number, c: number, mover: PlayerType) => {
-        if (mover !== player || isCellTaken(r, c) || winner) {
+    /**
+     * Checks if the specified player can move.
+     * Optional coordinates can be passed to check if they can move at a particular cell.
+     *
+     * @param mover the player attempting to move
+     * @param r the row to check if applicable
+     * @param c the column to check if applicable
+     * @returns true if the player can move
+     */
+    const canMove = (mover: PlayerType, r?: number, c?: number) => {
+        if (mover !== player || winner) {
+            return false;
+        } else if (r === undefined || c === undefined) {
+            return true;
+        } else {
+            return !isCellTaken(r, c);
+        }
+    };
+
+    /**
+     * Called when a player wants to attempt a move.
+     *
+     * @param mover the player attempting to move
+     * @param r the row to move to
+     * @param c the column to move to
+     * @returns true if the move was successful
+     */
+    const attemptMove = (mover: PlayerType, r: number, c: number) => {
+        if (!canMove(mover, r, c)) {
             return false;
         }
 
@@ -50,6 +84,10 @@ export function TicTacToe() {
         return true;
     };
 
+    /**
+     * Checks the state of the game to see if a player has won.
+     * The {@link winner} is set to the winning player if applicable.
+     */
     const checkGameState = () => {
         for (let i = 0; i < 3; i++) {
             if (isCellTaken(i, 0) && board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
@@ -82,8 +120,8 @@ export function TicTacToe() {
                 row.map((cell, c) => (
                     <button
                         key={`${r}-${c}`}
-                        onClick={() => attemptMove(r, c, PlayerType.Real)}
-                        className={`flex items-center justify-center text-4xl font-bold ${cell === PlayerType.None && player === PlayerType.Real && !winner && "hover:cursor-pointer"}`}
+                        onClick={() => attemptMove(PlayerType.Real, r, c)}
+                        className={`flex items-center justify-center text-4xl font-bold ${canMove(PlayerType.Real, r, c) && "hover:cursor-pointer"}`}
                     >
                         {cell}
                     </button>
