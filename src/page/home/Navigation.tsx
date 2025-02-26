@@ -24,28 +24,26 @@ export default function Navigation({ resource }: Props) {
                 </div>
             </div>
 
-            {resource && (
-                <div className="mt-5 flex flex-col">
-                    <svg viewBox="0 -3 200 17">
-                        <polyline points="0,12 100,0 200,12" className="fill-none stroke-cyan-950 stroke-3" />
-                    </svg>
-                    {resource.year && resource.description && (
-                        <section className="mx-8 mb-3 flex flex-col gap-3">
-                            <div className="mx-auto flex text-xl">
-                                <div className="font-bold">{resource.name}&nbsp;</div>
-                                <div>({new Date().getFullYear() - resource.year}+ years)</div>
-                            </div>
-                            <p>{resource.description}</p>
-                        </section>
-                    )}
-                    <div className={`mx-auto h-55 w-55 ${resource.name === "Tic Tac Toe" ? "block" : "hidden"}`}>
-                        <TicTacToe />
-                    </div>
-                    <svg viewBox="0 -3 200 17">
-                        <polyline points="0,0 100,12 200,0" className="fill-none stroke-cyan-950 stroke-3" />
-                    </svg>
+            <div className={`mt-5 flex flex-col ${resource ? "block" : "hidden"}`}>
+                <svg viewBox="0 -3 200 17">
+                    <polyline points="0,12 100,0 200,12" className="fill-none stroke-cyan-950 stroke-3" />
+                </svg>
+                {resource?.year && resource.description && (
+                    <section className="mx-8 mb-3 flex flex-col gap-3">
+                        <div className="mx-auto flex text-xl">
+                            <div className="font-bold">{resource.name}&nbsp;</div>
+                            <div>({new Date().getFullYear() - resource.year}+ years)</div>
+                        </div>
+                        <p>{resource.description}</p>
+                    </section>
+                )}
+                <div className={`mx-auto h-55 w-55 ${resource?.name === "Tic Tac Toe" ? "block" : "hidden"}`}>
+                    <TicTacToe />
                 </div>
-            )}
+                <svg viewBox="0 -3 200 17">
+                    <polyline points="0,0 100,12 200,0" className="fill-none stroke-cyan-950 stroke-3" />
+                </svg>
+            </div>
 
             <nav className="mt-auto mb-7 flex justify-center gap-15 text-4xl">
                 <a href="https://www.linkedin.com/in/colingrimes" target="_blank">
