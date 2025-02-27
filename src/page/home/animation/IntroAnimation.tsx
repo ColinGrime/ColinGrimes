@@ -23,7 +23,7 @@ export default function IntroAnimation({ stage, setStage }: AnimationProps) {
         }
 
         // Displays the intro text over time.
-        let interval: NodeJS.Timer;
+        let interval: NodeJS.Timeout;
         if (stage === AnimationStage.Typing) {
             interval = setInterval(() => setText((prev) => addNextIntroCharacter(prev)), introTextSpeedMs);
         }

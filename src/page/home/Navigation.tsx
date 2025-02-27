@@ -29,7 +29,7 @@ export default function Navigation({ resource }: Props) {
                     <polyline points="0,12 100,0 200,12" className="fill-none stroke-cyan-950 stroke-3" />
                 </svg>
                 {resource?.year && resource.description && (
-                    <section className="mx-8 mb-3 flex flex-col gap-3">
+                    <section className="mx-6 mb-3 flex flex-col gap-3">
                         <div className="mx-auto flex text-xl">
                             <div className="font-bold">{resource.name}&nbsp;</div>
                             <div>({new Date().getFullYear() - resource.year}+ years)</div>
