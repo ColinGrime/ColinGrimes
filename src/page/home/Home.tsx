@@ -43,6 +43,9 @@ export function Home() {
         if (!name || !email || !subject || !message) {
             toast.warning("Please fill out the entire form.");
             return;
+        } else if (!/.+@.+\..+/.test(email)) {
+            toast.warning("Please enter a valid email address.");
+            return;
         }
 
         setSendingEmail(true);
