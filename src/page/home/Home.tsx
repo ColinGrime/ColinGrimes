@@ -35,12 +35,12 @@ export function Home() {
             body: JSON.stringify({ name, email, subject, message }),
         };
         fetch("/contact", requestOptions)
-            .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-            .then(({ message }) => {
-                toast.success(message);
+            .then((res) => (res.ok ? res.json() : res.json().then((err) => Promise.reject(err))))
+            .then((data) => {
+                toast.success(data);
                 form.reset();
             })
-            .catch(({ message }) => toast.error(message))
+            .catch((err) => toast.error(err || "Something went wrong."))
             .finally(() => setSendingEmail(false));
     };
 
