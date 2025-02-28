@@ -1,0 +1,14 @@
+version: "3"
+services:
+    server:
+        build: ./
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - /etc/letsencrypt/live/colingrimes.me:/certs:ro
+        environment:
+            - NODE_ENV=production
+            - SSL_CERT_FILE=/certs/fullchain.pem
+            - SSL_KEY_FILE=/certs/privkey.pem
+        restart: always

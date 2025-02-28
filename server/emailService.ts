@@ -23,10 +23,10 @@ export const sendEmail = async (name: string, email: string, subject: string, me
             text: message,
         });
 
-        console.log("📧 Email sent successfully.");
+        console.log("Email sent successfully.");
         return { success: true, message: "Your email has been successfully sent!" };
     } catch (error) {
-        console.error("❌ Error sending email:", error);
+        console.error("Error sending email:", error);
         return { success: false, message: "Your email has failed to send." };
     }
 };
