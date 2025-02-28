@@ -46,7 +46,7 @@ export default function Navigation({ resource }: Props) {
                 </svg>
             </div>
 
-            <nav className="mt-auto mb-7 flex justify-center gap-15 text-4xl">
+            <nav className="mt-auto mb-7 flex justify-center gap-15 pt-4 text-4xl md:pt-0">
                 <motion.a
                     href="https://www.linkedin.com/in/colingrimes"
                     target="_blank"

@@ -85,7 +85,7 @@ export function Home() {
             {isPageReady(stage) && (
                 <div>
                     <Navigation resource={resource || defaultResource} />
-                    <div className="relative top-15 mx-auto flex w-125 flex-col gap-10 self-start md:left-90">
+                    <div className="relative top-7 mx-auto flex w-full flex-col gap-10 self-start px-5 md:top-15 md:left-90 md:w-125 md:px-0">
                         <section className="flex flex-col gap-5">
                             <button
                                 onClick={() => setStage(AnimationStage.Init)}
