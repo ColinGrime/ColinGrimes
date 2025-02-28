@@ -11,30 +11,37 @@ export function Home() {
     const [stage, setStage] = useState<AnimationStage>(AnimationStage.Init);
     const [resource, setResource] = useState<Resource | undefined>();
     const [defaultResource, setDefaultResource] = useState<Resource | undefined>();
+    const [sendingEmail, setSendingEmail] = useState(false);
 
     const handleContact = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const data = new FormData(e.currentTarget);
+        const form = e.currentTarget;
+        const data = new FormData(form);
         const name = data.get("name") as string;
         const email = data.get("email") as string;
         const subject = data.get("subject") as string;
         const message = data.get("message") as string;
 
         if (!name || !email || !subject || !message) {
-            toast.success("Your email has been successfully sent!");
+            toast.warning("Please fill out the entire form.");
             return;
         }
 
+        setSendingEmail(true);
         const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name, email, subject, message }),
         };
         fetch("/contact", requestOptions)
-            .then((res) => res.json())
-            .then((data) => alert("Message sent successfully!"))
-            .catch((err) => alert("Something went wrong!"));
+            .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+            .then(({ message }) => {
+                toast.success(message);
+                form.reset();
+            })
+            .catch(({ message }) => toast.error(message))
+            .finally(() => setSendingEmail(false));
     };
 
     return (
@@ -168,9 +175,14 @@ export function Home() {
                                 <textarea id="message" name="message" placeholder="Message" required className="h-50 resize-none rounded bg-gray-200 p-2" />
                                 <button
                                     type="submit"
-                                    className="flex h-10 w-45 items-center justify-center rounded bg-slate-950 p-1 text-lg font-semibold text-white hover:cursor-pointer"
+                                    className="flex h-10 w-45 items-center rounded bg-slate-950 p-3 text-lg font-semibold text-white hover:cursor-pointer"
                                 >
-                                    Send Message <IoIosSend className="pl-1 text-3xl" />
+                                    Send Message&nbsp;
+                                    {!sendingEmail ? (
+                                        <IoIosSend className="h-6 w-6" />
+                                    ) : (
+                                        <div className="m-1 h-4.5 w-4.5 animate-spin rounded-full border-3 border-t-blue-400" />
+                                    )}
                                 </button>
                             </form>
                         </section>

@@ -30,7 +30,7 @@ app.post("/contact", (req: Request, res: Response) => {
         })
         .catch((error: Error) => {
             console.error("❌ Error sending email:", error);
-            res.status(500).json({ message: "Email failed to send." });
+            res.status(500).json({ message: "Your email has failed to send." });
         });
 });
 
