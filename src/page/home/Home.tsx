@@ -91,11 +91,13 @@ export function Home() {
                                     <motion.button
                                         key={resource.name}
                                         onClick={() => setDefaultResource(resource)}
+                                        onMouseDown={() => setDefaultResource(undefined)}
                                         onMouseEnter={() => setResource(resource)}
                                         onMouseLeave={() => setResource(undefined)}
                                         whileHover={{ scale: 1.1 }}
-                                        whileTap={{ scale: 0.8 }}
-                                        className="pointer-events-none -m-2 p-2 hover:cursor-pointer md:pointer-events-auto"
+                                        whileTap={{ scale: 0.8, rotate: 20 }}
+                                        animate={resource === defaultResource ? { scale: 0.8, rotate: 20 } : {}}
+                                        className={`pointer-events-none -m-2 p-2 hover:cursor-pointer md:pointer-events-auto ${resource === defaultResource && "md:pointer-events-none"}`}
                                     >
                                         <img src={resource.path} draggable="false" />
                                     </motion.button>
