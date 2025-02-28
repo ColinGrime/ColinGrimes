@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { IoIosSend } from "react-icons/io";
 import { Resource, resources } from "../../config/settings";
 import { BackgroundAnimation } from "./animation/BackgroundAnimation";
 import IntroAnimation from "./animation/IntroAnimation";
@@ -9,6 +10,31 @@ export function Home() {
     const [stage, setStage] = useState<AnimationStage>(AnimationStage.Init);
     const [resource, setResource] = useState<Resource | undefined>();
     const [defaultResource, setDefaultResource] = useState<Resource | undefined>();
+
+    const handleContact = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const data = new FormData(e.currentTarget);
+        const name = data.get("name") as string;
+        const email = data.get("email") as string;
+        const subject = data.get("subject") as string;
+        const message = data.get("message") as string;
+
+        if (!name || !email || !subject || !message) {
+            alert("All fields are required!");
+            return;
+        }
+
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, subject, message }),
+        };
+        fetch("/contact", requestOptions)
+            .then((res) => res.json())
+            .then((data) => alert("Message sent successfully!"))
+            .catch((err) => alert("Something went wrong!"));
+    };
 
     return (
         <div className="relative flex h-full w-screen overflow-x-hidden">
@@ -103,7 +129,7 @@ export function Home() {
                                 </li>
                             </ul>
                         </section>
-                        <section className="flex flex-col gap-5 pb-10">
+                        <section className="flex flex-col gap-5">
                             <h2 className="text-2xl font-bold">Work Experience</h2>
                             <ul className="link flex list-disc flex-col gap-2 pl-5">
                                 <li>
@@ -129,6 +155,23 @@ export function Home() {
                                     test coverage for maintainability.
                                 </li>
                             </ul>
+                        </section>
+                        <section className="flex flex-col gap-2 pb-10">
+                            <h2 className="text-2xl font-bold">Contact Me! :)</h2>
+                            <form onSubmit={(e) => handleContact(e)} noValidate className="flex w-full flex-col gap-1">
+                                <div className="flex gap-1">
+                                    <input id="name" name="name" placeholder="Name" required className="w-full rounded bg-gray-200 p-2" />
+                                    <input id="email" name="email" placeholder="Email" type="email" required className="w-full rounded bg-gray-200 p-2" />
+                                </div>
+                                <input id="subject" name="subject" placeholder="Subject" required className="w-full rounded bg-gray-200 p-2" />
+                                <textarea id="message" name="message" placeholder="Message" required className="h-50 resize-none rounded bg-gray-200 p-2" />
+                                <button
+                                    type="submit"
+                                    className="flex h-10 w-45 items-center justify-center rounded bg-slate-950 p-1 text-lg font-semibold text-white hover:cursor-pointer"
+                                >
+                                    Send Message <IoIosSend className="pl-1 text-3xl" />
+                                </button>
+                            </form>
                         </section>
                     </div>
                 </div>
