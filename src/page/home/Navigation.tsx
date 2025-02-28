@@ -9,8 +9,8 @@ type Props = {
 
 export default function Navigation({ resource }: Props) {
     return (
-        <nav className="fixed flex h-full w-75 origin-left flex-col bg-slate-950 text-white">
-            <div className="mx-10 mt-10 shadow-md drop-shadow-2xl">
+        <nav className="flex w-screen origin-left flex-col bg-slate-950 text-white md:fixed md:h-full md:w-75">
+            <div className="mx-10 mt-10 h-full w-60 self-center shadow-md drop-shadow-2xl md:h-62 md:w-55">
                 <img src="colin.jpg" className="rounded-xl brightness-90" />
             </div>
 

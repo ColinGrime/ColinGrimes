@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { IoIosSend } from "react-icons/io";
 import { toast } from "sonner";
 import { Resource, resources } from "../../config/settings";
@@ -12,6 +12,19 @@ export function Home() {
     const [resource, setResource] = useState<Resource | undefined>();
     const [defaultResource, setDefaultResource] = useState<Resource | undefined>();
     const [sendingEmail, setSendingEmail] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                setResource(undefined);
+                setDefaultResource(undefined);
+            }
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const handleContact = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -60,7 +73,7 @@ export function Home() {
             {isPageReady(stage) && (
                 <div>
                     <Navigation resource={resource || defaultResource} />
-                    <div className="relative top-15 left-90 flex w-125 flex-col gap-10 self-start">
+                    <div className="relative top-15 mx-auto flex w-125 flex-col gap-10 self-start md:left-90">
                         <section className="flex flex-col gap-5">
                             <button
                                 onClick={() => setStage(AnimationStage.Init)}
@@ -79,7 +92,7 @@ export function Home() {
                                         onClick={() => setDefaultResource(resource)}
                                         onMouseEnter={() => setResource(resource)}
                                         onMouseLeave={() => setResource(undefined)}
-                                        className="-m-2 p-2 hover:cursor-pointer"
+                                        className="pointer-events-none -m-2 p-2 hover:cursor-pointer md:pointer-events-auto"
                                     >
                                         <img src={resource.path} />
                                     </button>
