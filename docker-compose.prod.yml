@@ -2,13 +2,19 @@ version: "3"
 services:
     server:
         build: ./
+        expose:
+            - "3001"
+        volumes:
+            - .:/usr/src/app
+        restart: always
+    nginx:
+        image: nginx:latest
         ports:
             - "80:80"
             - "443:443"
         volumes:
-            - /etc/letsencrypt/live/colingrimes.me:/certs:ro
-        environment:
-            - NODE_ENV=production
-            - SSL_CERT_FILE=/certs/fullchain.pem
-            - SSL_KEY_FILE=/certs/privkey.pem
+            - /etc/letsencrypt:/etc/letsencrypt:ro
+            - ./nginx.conf:/etc/nginx/nginx.conf:ro
+        depends_on:
+            - server
         restart: always
