@@ -15,6 +15,9 @@ export function Home() {
 
     const handleContact = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (sendingEmail) {
+            return;
+        }
 
         const form = e.currentTarget;
         const data = new FormData(form);
