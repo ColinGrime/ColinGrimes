@@ -1,4 +1,5 @@
 import cors from "cors";
+import dotenv from "dotenv";
 import express, { Request, Response } from "express";
 import rateLimit from "express-rate-limit";
 import fs from "fs";
@@ -7,6 +8,8 @@ import https from "https";
 import path from "path";
 import { fileURLToPath } from "url";
 import { sendEmail } from "./emailService.js";
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
