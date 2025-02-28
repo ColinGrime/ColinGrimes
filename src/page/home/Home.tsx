@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import { IoIosSend } from "react-icons/io";
+import { toast } from "sonner";
 import { Resource, resources } from "../../config/settings";
 import { BackgroundAnimation } from "./animation/BackgroundAnimation";
 import IntroAnimation from "./animation/IntroAnimation";
@@ -21,7 +22,7 @@ export function Home() {
         const message = data.get("message") as string;
 
         if (!name || !email || !subject || !message) {
-            alert("All fields are required!");
+            toast.success("Your email has been successfully sent!");
             return;
         }
 
