@@ -12,8 +12,8 @@ RUN npm install --silent
 # Copy the rest of the application to the container.
 COPY . .
 
-# Bind the app to port 3000.
-EXPOSE 3000
+# Bind the app to port 3001.
+EXPOSE 3001
 
 # Run the server when the container starts.
 CMD [ "npm", "start" ]
