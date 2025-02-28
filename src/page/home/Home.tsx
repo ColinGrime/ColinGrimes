@@ -77,7 +77,7 @@ export function Home() {
             {stage !== AnimationStage.Completed && <IntroAnimation stage={stage} setStage={setStage} />}
             {stage !== AnimationStage.Init && (
                 <div
-                    className={`pointer-events-none fixed left-28 hidden h-full w-full transition-opacity duration-2000 xl:block ${!isPageReady(stage) && "opacity-0"}`}
+                    className={`pointer-events-none fixed left-28 hidden h-full w-full transition-opacity duration-2000 [@media(min-width:1380px)]:block ${!isPageReady(stage) && "opacity-0"}`}
                 >
                     <BackgroundAnimation stage={stage} />
                 </div>
