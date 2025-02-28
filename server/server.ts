@@ -1,15 +1,9 @@
 import cors from "cors";
-import dotenv from "dotenv";
 import express, { Request, Response } from "express";
 import rateLimit from "express-rate-limit";
-import fs from "fs";
-import http from "http";
-import https from "https";
 import path from "path";
 import { fileURLToPath } from "url";
 import { sendEmail } from "./emailService.js";
-
-dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -47,28 +41,6 @@ app.post("/contact", limiter, (req: Request, res: Response) => {
         });
 });
 
-if (process.env.NODE_ENV === "production") {
-    const SSL_CERT_FILE = process.env.SSL_CERT_FILE || "/certs/fullchain.pem";
-    const SSL_KEY_FILE = process.env.SSL_KEY_FILE || "/certs/privkey.pem";
-
-    const options = {
-        key: fs.readFileSync(SSL_KEY_FILE),
-        cert: fs.readFileSync(SSL_CERT_FILE),
-    };
-
-    https.createServer(options, app).listen(443, () => {
-        console.log("HTTPS Server running on port 443.");
-    });
-
-    // Create HTTP server for redirecting to HTTPS server.
-    http.createServer((req, res) => {
-        res.writeHead(301, { Location: "https://" + req.headers.host + req.url });
-        res.end();
-    }).listen(80, () => {
-        console.log("Redirecting HTTP to HTTPS on port 80.");
-    });
-} else {
-    app.listen(3001, () => {
-        console.log("Development Server running on http://localhost:3001.");
-    });
-}
+app.listen(3001, () => {
+    console.log(`Server listening on http://localhost:3001`);
+});
