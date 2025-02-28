@@ -3,13 +3,15 @@ import { FormEvent, useEffect, useState } from "react";
 import { IoIosSend } from "react-icons/io";
 import { toast } from "sonner";
 import { Resource, resources } from "../../config/settings";
+import { useLocalStorage } from "../../hook/useLocalStorage";
 import { BackgroundAnimation } from "./animation/BackgroundAnimation";
 import IntroAnimation from "./animation/IntroAnimation";
 import Navigation from "./Navigation";
 import { AnimationStage, isPageReady } from "./util/animation";
 
 export function Home() {
-    const [stage, setStage] = useState<AnimationStage>(AnimationStage.Init);
+    const [introComplete, setIntroComplete] = useLocalStorage("introComplete", false);
+    const [stage, setStage] = useState<AnimationStage>(!introComplete ? AnimationStage.Init : AnimationStage.Completed);
     const [resource, setResource] = useState<Resource | undefined>();
     const [defaultResource, setDefaultResource] = useState<Resource | undefined>();
     const [sendingEmail, setSendingEmail] = useState(false);
@@ -26,6 +28,12 @@ export function Home() {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
+    useEffect(() => {
+        if (stage === AnimationStage.Completed) {
+            setIntroComplete(true);
+        }
+    }, [stage]);
 
     const handleContact = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
