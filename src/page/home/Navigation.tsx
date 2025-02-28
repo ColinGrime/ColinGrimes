@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Resource } from "../../config/settings";
 import { WordCycleAnimation } from "./animation/WordCycleAnimation";
@@ -11,7 +12,7 @@ export default function Navigation({ resource }: Props) {
     return (
         <nav className="flex w-screen origin-left flex-col bg-slate-950 text-white md:fixed md:h-full md:w-75">
             <div className="mx-10 mt-10 h-full w-60 self-center shadow-md drop-shadow-2xl md:h-62 md:w-55">
-                <img src="colin.jpg" className="rounded-xl brightness-90" />
+                <img src="colin.jpg" draggable="false" className="rounded-xl brightness-90" />
             </div>
 
             <div className="mt-5 flex flex-col items-center self-center whitespace-nowrap">
@@ -46,12 +47,18 @@ export default function Navigation({ resource }: Props) {
             </div>
 
             <nav className="mt-auto mb-7 flex justify-center gap-15 text-4xl">
-                <a href="https://www.linkedin.com/in/colingrimes" target="_blank">
+                <motion.a
+                    href="https://www.linkedin.com/in/colingrimes"
+                    target="_blank"
+                    draggable="false"
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.95 }}
+                >
                     <FaLinkedin />
-                </a>
-                <a href="https://github.com/ColinGrime" target="_blank">
+                </motion.a>
+                <motion.a href="https://github.com/ColinGrime" target="_blank" draggable="false" whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
                     <FaGithub />
-                </a>
+                </motion.a>
             </nav>
         </nav>
     );

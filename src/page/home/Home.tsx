@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { FormEvent, useEffect, useState } from "react";
 import { IoIosSend } from "react-icons/io";
 import { toast } from "sonner";
@@ -87,15 +88,17 @@ export function Home() {
                             </p>
                             <div className="grid h-50 w-110 grid-cols-6 grid-rows-3 gap-x-4">
                                 {resources.map((resource) => (
-                                    <button
+                                    <motion.button
                                         key={resource.name}
                                         onClick={() => setDefaultResource(resource)}
                                         onMouseEnter={() => setResource(resource)}
                                         onMouseLeave={() => setResource(undefined)}
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.8 }}
                                         className="pointer-events-none -m-2 p-2 hover:cursor-pointer md:pointer-events-auto"
                                     >
-                                        <img src={resource.path} />
-                                    </button>
+                                        <img src={resource.path} draggable="false" />
+                                    </motion.button>
                                 ))}
                             </div>
                             <p>
@@ -107,38 +110,38 @@ export function Home() {
                             <h2 className="text-2xl font-bold">Personal Projects</h2>
                             <ul className="link flex list-disc flex-col gap-2 pl-5">
                                 <li>
-                                    <a href="https://github.com/ColinGrime/Midnight" target="_blank">
+                                    <a href="https://github.com/ColinGrime/Midnight" target="_blank" draggable="false">
                                         Midnight
                                     </a>
                                     : Powerful and extensible Bukkit plugin development library, designed for ease of use and streamlined plugin creation.
                                 </li>
                                 <li>
-                                    <a href="https://github.com/ColinGrime/SkyMines" target="_blank">
+                                    <a href="https://github.com/ColinGrime/SkyMines" target="_blank" draggable="false">
                                         SkyMines
                                     </a>
                                     : Java Minecraft plugin enabling personalized and customizable mines for individual players, complete with upgrade paths,
                                     adjustable settings, and multiple storage options.
                                 </li>
                                 <li>
-                                    <a href="https://github.com/ColinGrime/Chess" target="_blank">
+                                    <a href="https://github.com/ColinGrime/Chess" target="_blank" draggable="false">
                                         Chess
                                     </a>
                                     : Classic chess game recreated in Java Swing, complete with essential rules and intuitive move guidance for players.
                                 </li>
                                 <li>
-                                    <a href="https://github.com/ColinGrime/Pixeldex" target="_blank">
+                                    <a href="https://github.com/ColinGrime/Pixeldex" target="_blank" draggable="false">
                                         Pixeldex
                                     </a>
                                     : Electron.js desktop application that lists all (currently 905) Pixelmon statistics and spawn information.
                                 </li>
                                 <li>
-                                    <a href="https://github.com/ColinGrime/ApexTournaments" target="_blank">
+                                    <a href="https://github.com/ColinGrime/ApexTournaments" target="_blank" draggable="false">
                                         ApexTournaments
                                     </a>
                                     : Discord.js bot that tracks your in-game statistics and allows you to host tournaments.
                                 </li>
                                 <li>
-                                    <a href="https://github.com/ColinGrime/SiriusEnchants" target="_blank">
+                                    <a href="https://github.com/ColinGrime/SiriusEnchants" target="_blank" draggable="false">
                                         SiriusEnchants
                                     </a>
                                     : Java Minecraft plugin with 30+ custom enchantments, a purchase/preview menu, admin free-buy, unenchanting, and stacked
@@ -146,7 +149,7 @@ export function Home() {
                                 </li>
                                 <li>
                                     ...and many more! Check out my Github{" "}
-                                    <a href="https://github.com/ColinGrime" target="_blank">
+                                    <a href="https://github.com/ColinGrime" target="_blank" draggable="false">
                                         @ColinGrime
                                     </a>
                                     .
