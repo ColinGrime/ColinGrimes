@@ -9,7 +9,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 3000;
 const limiter = rateLimit({
     windowMs: 60 * 60 * 1000,
     limit: 3,
@@ -42,6 +41,6 @@ app.post("/contact", limiter, (req: Request, res: Response) => {
         });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+app.listen(3001, () => {
+    console.log(`Server listening on http://localhost:3001`);
 });
